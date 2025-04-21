@@ -60,7 +60,3 @@ gamepad-controller
 - `pygame`: For handling gamepad input and graphics.
 - `pyautogui`: For simulating keyboard and mouse actions.
 - `pulsectl`: For controlling audio volume.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
