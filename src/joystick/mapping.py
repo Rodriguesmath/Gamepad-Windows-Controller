@@ -1,18 +1,14 @@
-import sys
-import os
-from src.audio.volume_control import aumentar_volume, diminuir_volume, pulse
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
+from src.audio.volume_control import aumentar_volume, diminuir_volume
 
 def mapear_gatilhos_para_volume(joystick):
     lt_axis = joystick.get_axis(4)  # LT geralmente no eixo 2
     rt_axis = joystick.get_axis(5)  # RT geralmente no eixo 5
 
     if lt_axis > 0.5:
-        diminuir_volume(pulse)
+        diminuir_volume()
 
     if rt_axis > 0.5:
-        aumentar_volume(pulse)
+        aumentar_volume()
 
 
 def mover_cursor_com_analogico(joystick, sensibilidade=50):

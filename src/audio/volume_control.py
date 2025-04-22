@@ -1,19 +1,29 @@
-import pulsectl  
+import ctypes
 
-pulse = pulsectl.Pulse('gamepad-volume-control')
+# Função para aumentar o volume do sistema
+def aumentar_volume():
+    # Obtém o volume atual
+    current_volume = ctypes.c_uint()
+    ctypes.windll.winmm.waveOutGetVolume(0, ctypes.byref(current_volume))
+    current_volume = current_volume.value & 0xFFFF
 
+    # Calcula o novo volume (incrementa 5%)
+    new_volume = min(current_volume + int(0.05 * 0xFFFF), 0xFFFF)
 
-def aumentar_volume(pulse):
-    sink = pulse.sink_list()[0]
-    current_volume = sink.volume.value_flat
-    new_volume = min(current_volume + 0.05, 1.5)
-    pulse.volume_set_all_chans(sink, new_volume)
-    print(f"Volume aumentado para: {new_volume * 100:.1f}%")
+    # Define o novo volume
+    ctypes.windll.winmm.waveOutSetVolume(0, new_volume | (new_volume << 16))
+    print(f"Volume aumentado para: {new_volume / 0xFFFF * 100:.1f}%")
 
+# Função para diminuir o volume do sistema
+def diminuir_volume():
+    # Obtém o volume atual
+    current_volume = ctypes.c_uint()
+    ctypes.windll.winmm.waveOutGetVolume(0, ctypes.byref(current_volume))
+    current_volume = current_volume.value & 0xFFFF
 
-def diminuir_volume(pulse):
-    sink = pulse.sink_list()[0]
-    current_volume = sink.volume.value_flat
-    new_volume = max(current_volume - 0.05, 0.0)
-    pulse.volume_set_all_chans(sink, new_volume)
-    print(f"Volume diminuído para: {new_volume * 100:.1f}%")
+    # Calcula o novo volume (decrementa 5%)
+    new_volume = max(current_volume - int(0.05 * 0xFFFF), 0)
+
+    # Define o novo volume
+    ctypes.windll.winmm.waveOutSetVolume(0, new_volume | (new_volume << 16))
+    print(f"Volume diminuído para: {new_volume / 0xFFFF * 100:.1f}%")
