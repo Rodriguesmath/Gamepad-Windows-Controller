@@ -1,3 +1,8 @@
+import pulsectl  
+
+pulse = pulsectl.Pulse('gamepad-volume-control')
+
+
 def aumentar_volume(pulse):
     sink = pulse.sink_list()[0]
     current_volume = sink.volume.value_flat

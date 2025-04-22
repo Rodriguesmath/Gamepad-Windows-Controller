@@ -1,5 +1,6 @@
+import pygame
+
 def conectar_controle():
-    import pygame
 
     if pygame.joystick.get_count() > 0:
         joystick = pygame.joystick.Joystick(0)
@@ -10,7 +11,6 @@ def conectar_controle():
 
 
 def verificar_conexao_controle(joystick):
-    import pygame
 
     if pygame.joystick.get_count() == 0 or not joystick.get_init():
         print("Controle desconectado. Reinicializando o subsistema de joystick...")

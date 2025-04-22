@@ -1,3 +1,5 @@
+import pyautogui
+
 def mapear_dpad_para_teclado(dpad_x, dpad_y):
     if dpad_x == 0 and dpad_y == 1:
         pyautogui.press('up')  # Pressiona a tecla "Cima"
