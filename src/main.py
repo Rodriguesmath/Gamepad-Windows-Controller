@@ -2,7 +2,7 @@ import pygame
 import sys
 from joystick.connection import conectar_controle, verificar_conexao_controle
 from joystick.events import mapear_dpad_para_teclado, mapear_botoes_para_teclado, mapear_botoes_para_mouse, mapear_alt_tab
-from joystick.mapping import mover_cursor_com_analogico
+from joystick.mapping import mover_cursor_com_analogico, mapear_gatilhos_para_volume
 
 pygame.init()
 running = True
@@ -30,7 +30,7 @@ while running:
                 mapear_dpad_para_teclado(dpad_x, dpad_y)
 
         # Verifica se o joystick não é None antes de chamar as funções
-
+        mapear_gatilhos_para_volume(joystick)
         mover_cursor_com_analogico(joystick)
 
     pygame.time.Clock().tick(30)

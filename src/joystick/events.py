@@ -1,6 +1,12 @@
 import pyautogui
 
 def mapear_dpad_para_teclado(dpad_x, dpad_y):
+    '''
+    Tradutor de entrada do Dpad (os valores variam de acordo com o controle) para teclado.\n
+    @parameters: dpad_x, dpad_y\n
+    @return: none
+    
+    '''
     if dpad_x == 0 and dpad_y == 1:
         pyautogui.press('up')  # Pressiona a tecla "Cima"
     elif dpad_x == 0 and dpad_y == -1:
@@ -11,6 +17,12 @@ def mapear_dpad_para_teclado(dpad_x, dpad_y):
         pyautogui.press('right')  # Pressiona a tecla "Direita"
 
 def mapear_botoes_para_teclado(button):
+    '''
+    Tradutor de entrada dos botões(os valores variam de acordo com o controle) do joystick em entradas do teclado.\n
+    @parameters: button\n
+    @return: none
+
+    '''
     if button == 0:  # Botão A
         pyautogui.press('enter')
     elif button == 1:  # Botão B
@@ -27,10 +39,16 @@ def mapear_botoes_para_teclado(button):
         pyautogui.press('f11')
 
 def mapear_botoes_para_mouse(button):
+    '''
+    Tradutor de entrada dos botões(os valores variam de acordo com o controle) do joystick em botões do mouse.\n
+    @parameters: button\n
+    @return: none
+    
+    '''
     if button == 4:  # Botão LB para clique direito
         pyautogui.rightClick()
     elif button == 5:  # Botão RB
-        pyautogui.leftClick()  # RB mapeado para "volumeup"
+        pyautogui.leftClick()  # RB mapeado para click esquerdo do mouse.
 
 def mapear_alt_tab(button):
     if button == 3:  # Vamos usar o botão Y para "Alt + Tab"

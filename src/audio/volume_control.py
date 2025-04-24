@@ -1,29 +1,22 @@
-import ctypes
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+from ctypes import cast, POINTER
+from comtypes import CLSCTX_ALL
 
-# Função para aumentar o volume do sistema
+def get_volume_interface():
+    devices = AudioUtilities.GetSpeakers()
+    interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    return cast(interface, POINTER(IAudioEndpointVolume))
+
 def aumentar_volume():
-    # Obtém o volume atual
-    current_volume = ctypes.c_uint()
-    ctypes.windll.winmm.waveOutGetVolume(0, ctypes.byref(current_volume))
-    current_volume = current_volume.value & 0xFFFF
+    volume = get_volume_interface()
+    current = volume.GetMasterVolumeLevelScalar()
+    novo_volume = min(current + 0.05, 1.0)
+    volume.SetMasterVolumeLevelScalar(novo_volume, None)
+    print(f"Volume aumentado para: {novo_volume * 100:.1f}%")
 
-    # Calcula o novo volume (incrementa 5%)
-    new_volume = min(current_volume + int(0.05 * 0xFFFF), 0xFFFF)
-
-    # Define o novo volume
-    ctypes.windll.winmm.waveOutSetVolume(0, new_volume | (new_volume << 16))
-    print(f"Volume aumentado para: {new_volume / 0xFFFF * 100:.1f}%")
-
-# Função para diminuir o volume do sistema
 def diminuir_volume():
-    # Obtém o volume atual
-    current_volume = ctypes.c_uint()
-    ctypes.windll.winmm.waveOutGetVolume(0, ctypes.byref(current_volume))
-    current_volume = current_volume.value & 0xFFFF
-
-    # Calcula o novo volume (decrementa 5%)
-    new_volume = max(current_volume - int(0.05 * 0xFFFF), 0)
-
-    # Define o novo volume
-    ctypes.windll.winmm.waveOutSetVolume(0, new_volume | (new_volume << 16))
-    print(f"Volume diminuído para: {new_volume / 0xFFFF * 100:.1f}%")
+    volume = get_volume_interface()
+    current = volume.GetMasterVolumeLevelScalar()
+    novo_volume = max(current - 0.05, 0.0)
+    volume.SetMasterVolumeLevelScalar(novo_volume, None)
+    print(f"Volume diminuído para: {novo_volume * 100:.1f}%")
