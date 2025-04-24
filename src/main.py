@@ -1,8 +1,9 @@
 import pygame
-import sys
+
 from joystick.connection import conectar_controle, verificar_conexao_controle
 from joystick.events import mapear_dpad_para_teclado, mapear_botoes_para_teclado, mapear_botoes_para_mouse, mapear_alt_tab
-from joystick.mapping import mover_cursor_com_analogico, mapear_gatilhos_para_volume
+from joystick.mapping import mapear_gatilhos_para_volume
+from utils.mouse_control import mover_cursor_com_analogico
 
 pygame.init()
 running = True

@@ -23,19 +23,31 @@ def mapear_botoes_para_teclado(button):
     @return: none
 
     '''
-    if button == 0:  # Botão A
+    # Aqui você pode mapear os botões do joystick para teclas específicas do teclado
+    # Os valores dos botões podem variar dependendo do controle, então ajuste conforme necessário
+    # Exemplo de mapeamento:
+    # A = 0, B = 1, X = 2, Y = 3, SELECT = 6, START = 7, L = 8
+    A = 0
+    B = 1
+    X = 2
+    Y = 3
+    SELECT = 6
+    START = 7
+    L = 8
+
+    if button == A:  # Botão A
         pyautogui.press('enter')
-    elif button == 1:  # Botão B
+    elif button == B:  # Botão B
         pyautogui.press('esc')  
-    elif button == 2:  # Botão X
+    elif button == X:  # Botão X
         pyautogui.press('tab')
-    elif button == 3:  # Botão Y
+    elif button == Y:  # Botão Y
         pyautogui.hotkey('alt', 'tab')  # Simula a combinação Alt + Tab para alternar de janela
-    elif button == 6:  # Botão select
+    elif button == SELECT:  # Botão select
         pyautogui.press('space')    
-    elif button == 7:  # Botão Start
+    elif button == START:  # Botão Start
         pyautogui.press('playpause')
-    elif button == 8:  # Botão L
+    elif button == L:  # Botão L
         pyautogui.press('f11')
 
 def mapear_botoes_para_mouse(button):
@@ -45,9 +57,15 @@ def mapear_botoes_para_mouse(button):
     @return: none
     
     '''
-    if button == 4:  # Botão LB para clique direito
+    # Aqui você pode mapear os botões do joystick para ações do mouse
+    # Os valores dos botões podem variar dependendo do controle, então ajuste conforme necessário
+    # Exemplo de mapeamento:
+    # LB = 4, RB = 5
+    LB = 4
+    RB = 5
+    if button == LB:  # Botão LB para clique direito
         pyautogui.rightClick()
-    elif button == 5:  # Botão RB
+    elif button == RB:  # Botão RB
         pyautogui.leftClick()  # RB mapeado para click esquerdo do mouse.
 
 def mapear_alt_tab(button):
