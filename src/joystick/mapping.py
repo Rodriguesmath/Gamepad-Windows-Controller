@@ -5,6 +5,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 
 from src.audio.volume_control import aumentar_volume, diminuir_volume
 
+pyautogui.FAILSAFE = False
+
 def mapear_gatilhos_para_volume(joystick):
     '''
     Traduz as entradas dos eixos do joystick para as funções diminuir e aumentar volume.\n
@@ -22,7 +24,7 @@ def mapear_gatilhos_para_volume(joystick):
         aumentar_volume()
 
 
-def mover_cursor_com_analogico(joystick, sensibilidade=80):
+def mover_cursor_com_analogico(joystick, sensibilidade=80):                         
     axis_x = joystick.get_axis(2)  # Eixo horizontal do analógico direito
     axis_y = joystick.get_axis(3)  # Eixo vertical do analógico direito
 
