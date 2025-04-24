@@ -4,7 +4,6 @@ This project is a gamepad controller application that allows users to control th
 
 ## Features
 
-- Connects to Xbox 360 controllers.
 - Maps D-Pad movements to keyboard arrow keys.
 - Maps controller buttons to keyboard actions (e.g., Enter, Escape, Alt+Tab).
 - Controls mouse cursor movement using the right analog stick.
