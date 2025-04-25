@@ -58,4 +58,4 @@ gamepad-controller
 
 - `pygame`: For handling gamepad input and graphics.
 - `pyautogui`: For simulating keyboard and mouse actions.
-- `pulsectl`: For controlling audio volume.
+- `pycaw`: For controlling audio volume.
