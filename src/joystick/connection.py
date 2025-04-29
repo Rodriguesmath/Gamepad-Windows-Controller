@@ -1,5 +1,8 @@
 import pygame
 
+# TODO: Solve issue with joystick connection
+
+
 def conectar_controle():
     """
     Connects a joystick controller to the software.
